@@ -78,5 +78,10 @@ jobs:
              --version ${OCI_ARTIFACT_VERSION} \
              --annotation-source ${{ github.server_url }}/${{ github.repository }}.git \
              ${OCI_REPO_PREFIX}/${OCI_ARTIFACT_NAME}:${OCI_ARTIFACT_VERSION} \
-             rules/${RULESET_FILE}
+             rules/${RULESET_FILE} | tee falcoctl_output.txt && \
+             echo "ARTIFACT_DIGEST=$(grep --only-matching -e "sha256:[a-fA-F0-9]\{64\}" falcoctl_output.txt)" >> ${GITHUB_ENV}
 
+      - name: Cosign magic
+        env:
+          COSIGN_EXPERIMENTAL: "true"
+        run: cosign sign ${OCI_REPO_PREFIX}/${OCI_ARTIFACT_NAME}@${ARTIFACT_DIGEST}
