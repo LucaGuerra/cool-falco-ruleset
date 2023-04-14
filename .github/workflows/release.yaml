@@ -59,6 +59,7 @@ jobs:
              --config /dev/null \
              --type rulesfile \
              --version ${OCI_ARTIFACT_VERSION} \
+             --annotation-source ${{ github.server_url }}/${{ github.repository }}.git
              ${OCI_REGISTRY}/${GITHUB_REPOSITORY}/${OCI_ARTIFACT_NAME}:${OCI_ARTIFACT_VERSION} \
              rules/${RULESET_FILE}
         env:
