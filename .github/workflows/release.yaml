@@ -63,9 +63,17 @@ jobs:
         run: |
           echo "OCI_REPO_PREFIX=${OCI_REGISTRY}/${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
 
+      - name: Log into ghcr.io
+        uses: docker/login-action@master
+        with:
+          registry: ghcr.io
+          username: lucaguerra
+          password: ${{ secrets.GITHUB_TOKEN }}
+
       - name: Upload OCI artifacts to GitHub packages
         run: |
              tools/falcoctl/falcoctl registry push \
+             --config /dev/null \
              --type rulesfile \
              --version ${OCI_ARTIFACT_VERSION} \
              --annotation-source ${{ github.server_url }}/${{ github.repository }}.git \
