@@ -54,6 +54,11 @@ jobs:
         with:
           path: rules
 
+      - name: Install Cosign
+        uses: sigstore/cosign-installer@main
+        with:
+          cosign-release: 'v2.0.1'
+
       - name: Get lowercase OCI repo prefix
         run: |
           echo "OCI_REPO_PREFIX=${OCI_REGISTRY}/${GITHUB_REPOSITORY,,}" >>${GITHUB_ENV}
@@ -67,5 +72,4 @@ jobs:
              --annotation-source ${{ github.server_url }}/${{ github.repository }}.git \
              ${OCI_REPO_PREFIX}/${OCI_ARTIFACT_NAME}:${OCI_ARTIFACT_VERSION} \
              rules/${RULESET_FILE}
-        env:
-          FALCOCTL_REGISTRY_AUTH_BASIC: ${{ env.OCI_REGISTRY }},${{ github.repository_owner }},${{ secrets.GITHUB_TOKEN }}
+
