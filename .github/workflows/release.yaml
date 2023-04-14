@@ -84,4 +84,4 @@ jobs:
       - name: Cosign magic
         env:
           COSIGN_EXPERIMENTAL: "true"
-        run: cosign sign ${OCI_REPO_PREFIX}/${OCI_ARTIFACT_NAME}@${ARTIFACT_DIGEST}
+        run: cosign sign --yes ${OCI_REPO_PREFIX}/${OCI_ARTIFACT_NAME}@${ARTIFACT_DIGEST}
