@@ -31,11 +31,14 @@ jobs:
       OCI_ARTIFACT_VERSION: ${{ github.ref_name }}
 
     steps:
-
-      - name: Install Falcoctl
-        run: mkdir -p tools/falcoctl && cd tools/falcoctl && \
-          curl -o falcoctl.tar.gz -L https://github.com/falcosecurity/falcoctl/releases/download/v0.5.1/falcoctl_0.5.1_linux_amd64.tar.gz && \
-          tar xvf ./falcoctl.tar.gz
+      - name: Download Falcoctl
+        uses: giantswarm/install-binary-action@v1.1.0
+        with:
+          binary: "falcoctl"
+          version: "0.5.1"
+          download_url: "https://github.com/falcosecurity/falcoctl/releases/download/v${version}/falcoctl_${version}_linux_amd64.tar.gz"
+          tarball_binary_path: "${binary}"
+          smoke_test: "${binary} version"
 
       - name: Setup Golang
         uses: actions/setup-go@v4
