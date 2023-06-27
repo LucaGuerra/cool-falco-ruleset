@@ -32,22 +32,16 @@ jobs:
 
     steps:
 
-      - name: Checkout Falcoctl Repo
-        uses: actions/checkout@v3
-        with:
-          repository: falcosecurity/falcoctl
-          ref: main
-          path: tools/falcoctl
+      - name: Install Falcoctl
+        run: mkdir -p tools/falcoctl && cd tools/falcoctl && \
+          curl -o falcoctl.tar.gz -L https://github.com/falcosecurity/falcoctl/releases/download/v0.5.1/falcoctl_0.5.1_linux_amd64.tar.gz && \
+          tar xvf ./falcoctl.tar.gz
 
       - name: Setup Golang
         uses: actions/setup-go@v4
         with:
           go-version: '^1.20'
           cache-dependency-path: tools/falcoctl/go.sum
-
-      - name: Build falcoctl
-        run: make
-        working-directory: tools/falcoctl
 
       - name: Checkout Rules Repo
         uses: actions/checkout@v3
