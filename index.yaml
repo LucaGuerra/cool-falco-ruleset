@@ -12,4 +12,7 @@
       name: Luca Guerra
   sources:
     - https://github.com/LucaGuerra/cool-falco-ruleset/blob/main/custom_falco_rules.yaml
-
+  signature:
+    cosign:
+      certificate-oidc-issuer: https://token.actions.githubusercontent.com
+      certificate-identity-regexp: https://github.com/LucaGuerra/cool-falco-ruleset/
