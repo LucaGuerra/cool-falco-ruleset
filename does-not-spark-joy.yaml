@@ -1,0 +1,18 @@
+- name: lg-custom-rules
+  type: rulesfile
+  registry: ghcr.io
+  repository: lucaguerra/cool-falco-ruleset/custom-rules
+  description: Custom rules
+  home: https://github.com/LucaGuerra/cool-falco-ruleset/blob/main/custom_falco_rules.yaml
+  keywords:
+    - lg-custom-rules
+  license: apache-2.0
+  maintainers:
+    - email: luca@guerra.sh
+      name: Luca Guerra
+  sources:
+    - https://github.com/LucaGuerra/cool-falco-ruleset/blob/main/custom_falco_rules.yaml
+  signature:
+    cosign:
+      certificate-oidc-issuer: https://token.actions.githubusercontent.com
+      certificate-identity-regexp: https://github.com/LucaGuerra/not-cool-falco-ruleset/
