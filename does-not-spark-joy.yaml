@@ -1,4 +1,4 @@
-- name: lg-custom-rules
+- name: lg-custom-rules-no-joy
   type: rulesfile
   registry: ghcr.io
   repository: lucaguerra/cool-falco-ruleset/custom-rules
