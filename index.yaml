@@ -34,3 +34,25 @@
     cosign:
       certificate-oidc-issuer: https://token.actions.githubusercontent.com
       certificate-identity-regexp: https://github.com/falcosecurity/rules/
+- name: gcpaudit
+  type: plugin
+  registry: ghcr.io
+  repository: falcosecurity/plugins/plugin/gcpaudit
+  description: Read Kubernetes GCP Audit Events and monitor Kubernetes Clusters
+  home: https://github.com/falcosecurity/plugins/tree/master/plugins/gcpaudit
+  keywords:
+    - audit
+    - audit-log
+    - audit-events
+    - kubernetes
+    - gcpaudit
+  license: Apache-2.0
+  maintainers:
+    - email: cncf-falco-dev@lists.cncf.io
+      name: The Falco Authors
+  sources:
+    - https://github.com/falcosecurity/plugins/tree/master/plugins/gcpaudit
+  signature:
+    cosign:
+      certificate-oidc-issuer: https://token.actions.githubusercontent.com
+      certificate-identity-regexp: https://github.com/falcosecurity/plugins/
